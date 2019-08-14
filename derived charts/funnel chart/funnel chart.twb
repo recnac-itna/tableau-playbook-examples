@@ -1,0 +1,1165 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20192.19.0515.1630                               -->
+<workbook original-version='18.1' source-build='2019.2.0 (20192.19.0515.1630)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <SheetIdentifierTracking ignorable='true' predowngraded='true' />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <repository-location id='FunnelChart_15657701668540' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='funnel_dataset_conversion_rate' inline='true' name='federated.10ucgmf0ufewct14s4ull13r5dq3' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='funnel_dataset_conversion_rate' name='textscan.01m9yqh12t80mc13l9udt0atggbk'>
+            <connection class='textscan' directory='C:/Users/SevenHe/Documents/PluralSight/Tableau/tableau-playbook-examples/derived charts/funnel chart' filename='funnel_dataset_conversion_rate.csv' password='' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation name='Pivot' type='pivot'>
+          <columns>
+            <column datatype='string' name='Pivot Field Names' />
+            <column datatype='integer' name='Pivot Field Values' />
+          </columns>
+          <tag name='Pivot Field Names'>
+            <value name='[Ad]' />
+            <value name='[Affiliates]' />
+            <value name='[Direct]' />
+            <value name='[Media]' />
+            <value name='[Referrals]' />
+          </tag>
+          <groups>
+            <group name='Pivot Field Values'>
+              <field name='[funnel_dataset_conversion_rate.csv].[Ad]' />
+              <field name='[funnel_dataset_conversion_rate.csv].[Affiliates]' />
+              <field name='[funnel_dataset_conversion_rate.csv].[Direct]' />
+              <field name='[funnel_dataset_conversion_rate.csv].[Media]' />
+              <field name='[funnel_dataset_conversion_rate.csv].[Referrals]' />
+            </group>
+          </groups>
+          <relation connection='textscan.01m9yqh12t80mc13l9udt0atggbk' name='funnel_dataset_conversion_rate.csv' table='[funnel_dataset_conversion_rate#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='zh_CN' separator=','>
+              <column datatype='string' name='Stage' ordinal='0' />
+              <column datatype='integer' name='Ad' ordinal='1' />
+              <column datatype='integer' name='Media' ordinal='2' />
+              <column datatype='integer' name='Affiliates' ordinal='3' />
+              <column datatype='integer' name='Referrals' ordinal='4' />
+              <column datatype='integer' name='Direct' ordinal='5' />
+            </columns>
+          </relation>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[funnel_dataset_conversion_rate.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;zh_Hans_CN&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;￥&quot;</attribute>
+              <attribute datatype='string' name='debit-close-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='debit-open-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;zh_CN&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Stage</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Stage]</local-name>
+            <parent-name>[funnel_dataset_conversion_rate.csv]</parent-name>
+            <remote-alias>Stage</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LZH_RCN' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Pivot Field Names</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Pivot Field Names]</local-name>
+            <parent-name>[Pivot]</parent-name>
+            <remote-alias>Pivot Field Names</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Pivot Field Values</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Pivot Field Values]</local-name>
+            <parent-name>[Pivot]</parent-name>
+            <remote-alias>Pivot Field Values</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Percent of Max' datatype='real' name='[Calculation2 (copy)]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Pivot Field Values]) / WINDOW_MAX(SUM([Pivot Field Values]))'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Sales Channel' datatype='string' name='[Pivot Field Names]' role='dimension' type='nominal' />
+      <column caption='Leads' datatype='integer' name='[Pivot Field Values]' role='measure' type='quantitative' />
+      <column datatype='string' name='[Stage]' role='dimension' type='nominal' />
+      <column-instance column='[Stage]' derivation='None' name='[none:Stage:nk]' pivot='key' type='nominal' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='C:/Users/SevenHe/Documents/我的 Tableau 存储库/数据源/funnel_dataset_conversion_rate.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='08/14/2019 08:09:01 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <refresh>
+            <refresh-event add-from-file-path='funnel_dataset_conversion_rate' increment-value='%null%' refresh-type='create' rows-inserted='20' timestamp-start='2019-08-14 08:09:01.082' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Stage</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Stage]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Stage</remote-alias>
+              <ordinal>0</ordinal>
+              <family>funnel_dataset_conversion_rate.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LZH_RCN' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Pivot Field Names</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Pivot Field Names]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Pivot Field Names</remote-alias>
+              <ordinal>1</ordinal>
+              <family>Pivot</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Pivot Field Values</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Pivot Field Values]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Pivot Field Values</remote-alias>
+              <ordinal>2</ordinal>
+              <family>Pivot</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>20</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.452073' measure-ordering='alphabetic' measure-percentage='0.547927' show-structure='true' user-set-layout='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:Stage:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Visit&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Purchase&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Selection&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Sign-up&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;China&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='funnel_dataset_interview' inline='true' name='federated.1pdqggm102b50s1fkskjm1w507al' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='funnel_dataset_interview' name='textscan.02usnt51q4qsj218funk81v0yjwm'>
+            <connection class='textscan' directory='C:/Users/SevenHe/Documents/PluralSight/Tableau/tableau-playbook-examples/derived charts/funnel chart' filename='funnel_dataset_interview.csv' password='' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.02usnt51q4qsj218funk81v0yjwm' name='funnel_dataset_interview.csv' table='[funnel_dataset_interview#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='zh_CN' separator=','>
+            <column datatype='string' name='Stage' ordinal='0' />
+            <column datatype='real' name='Percentage' ordinal='1' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[funnel_dataset_interview.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;zh_Hans_CN&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;￥&quot;</attribute>
+              <attribute datatype='string' name='debit-close-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='debit-open-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;zh_CN&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Stage</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Stage]</local-name>
+            <parent-name>[funnel_dataset_interview.csv]</parent-name>
+            <remote-alias>Stage</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LZH_RCN' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Percentage</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Percentage]</local-name>
+            <parent-name>[funnel_dataset_interview.csv]</parent-name>
+            <remote-alias>Percentage</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Brief Interview by HR' datatype='real' name='[Application (copy 2)]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Brief Interview by HR&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Brief Interview by HR&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Reveraling some other information' datatype='real' name='[Application (copy 3)]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Reveraling some other information&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Reveraling some other information&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Interview with the director' datatype='real' name='[Application (copy 4)]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Interview with the director&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Interview with the director&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Offer' datatype='real' name='[Application (copy 5)]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Offer&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Offer&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Testing' datatype='real' name='[Application (copy)]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Testing&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Testing&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Percentage Diff' datatype='real' name='[Calculation_2151313269328076806]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Percentage]) - LOOKUP(SUM([Percentage]), -1)'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Application' datatype='real' name='[Calculation_2151313269348425735]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Application&quot;&#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Application&quot;&#13;&#10;THEN SUM([Percentage]) END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[Stage]' role='dimension' type='nominal' />
+      <column-instance column='[Stage]' derivation='None' name='[none:Stage:nk]' pivot='key' type='nominal' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='C:/Users/SevenHe/Documents/我的 Tableau 存储库/数据源/funnel_dataset_interview.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='08/14/2019 08:08:54 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <refresh>
+            <refresh-event add-from-file-path='funnel_dataset_interview' increment-value='%null%' refresh-type='create' rows-inserted='6' timestamp-start='2019-08-14 08:08:54.733' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Stage</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Stage]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Stage</remote-alias>
+              <ordinal>0</ordinal>
+              <family>funnel_dataset_interview.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LZH_RCN' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Percentage</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Percentage]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Percentage</remote-alias>
+              <ordinal>1</ordinal>
+              <family>funnel_dataset_interview.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.391192' measure-ordering='alphabetic' measure-percentage='0.608808' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:Stage:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Application&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Interview with the director&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Reveraling some other information&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Testing&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Offer&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Brief Interview by HR&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;China&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='basic funnel chart'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Conversion Rate of Sales Channels [&lt;</run>
+            <run bold='true'>[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Pivot Field Names:nk]</run>
+            <run bold='true'>&gt;]</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='funnel_dataset_conversion_rate' name='federated.10ucgmf0ufewct14s4ull13r5dq3' />
+          </datasources>
+          <datasource-dependencies datasource='federated.10ucgmf0ufewct14s4ull13r5dq3'>
+            <column caption='Percent of Max' datatype='real' name='[Calculation2 (copy)]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Pivot Field Values]) / WINDOW_MAX(SUM([Pivot Field Values]))'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Sales Channel' datatype='string' name='[Pivot Field Names]' role='dimension' type='nominal' />
+            <column caption='Leads' datatype='integer' name='[Pivot Field Values]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Stage]' role='dimension' type='nominal' />
+            <column-instance column='[Pivot Field Names]' derivation='None' name='[none:Pivot Field Names:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Stage]' derivation='None' name='[none:Stage:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Pivot Field Values]' derivation='Sum' name='[sum:Pivot Field Values:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation2 (copy)]' derivation='User' name='[usr:Calculation2 (copy):qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-field='[federated.10ucgmf0ufewct14s4ull13r5dq3].[Stage]' ordering-type='Field' />
+            </column-instance>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Pivot Field Names:nk]'>
+            <groupfilter function='level-members' level='[none:Pivot Field Names:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <computed-sort column='[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Stage:nk]' direction='DESC' using='[federated.10ucgmf0ufewct14s4ull13r5dq3].[sum:Pivot Field Values:qk]' />
+          <slices>
+            <column>[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Pivot Field Names:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.10ucgmf0ufewct14s4ull13r5dq3].[sum:Pivot Field Values:qk]' scope='rows' value='false' />
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.10ucgmf0ufewct14s4ull13r5dq3].[usr:Calculation2 (copy):qk:2]' value='p0.0%' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Stage:nk]' />
+              <size column='[federated.10ucgmf0ufewct14s4ull13r5dq3].[sum:Pivot Field Values:qk]' />
+              <text column='[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Stage:nk]' />
+              <text column='[federated.10ucgmf0ufewct14s4ull13r5dq3].[sum:Pivot Field Values:qk]' />
+              <text column='[federated.10ucgmf0ufewct14s4ull13r5dq3].[usr:Calculation2 (copy):qk:2]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run>&lt;</run>
+                <run>[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Stage:nk]</run>
+                <run>&gt; - </run>
+                <run>&lt;[federated.10ucgmf0ufewct14s4ull13r5dq3].[usr:Calculation2 (copy):qk:2]&gt;</run>
+                <run>&#10;&lt;</run>
+                <run>[federated.10ucgmf0ufewct14s4ull13r5dq3].[sum:Pivot Field Values:qk]</run>
+                <run>&gt;&#10;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='user' />
+                <format attr='color' value='#ffffff' />
+                <format attr='font-weight' value='bold' />
+                <format attr='font-size' value='10' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.10ucgmf0ufewct14s4ull13r5dq3].[sum:Pivot Field Values:qk]</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{99101FD0-C6FC-4A18-BD13-3C92F115B985}' />
+    </worksheet>
+    <worksheet name='color smooth funnel chart'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>The Pass Rates of Interviewing</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='funnel_dataset_interview' name='federated.1pdqggm102b50s1fkskjm1w507al' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1pdqggm102b50s1fkskjm1w507al'>
+            <column caption='Brief Interview by HR' datatype='real' name='[Application (copy 2)]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Brief Interview by HR&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Brief Interview by HR&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Reveraling some other information' datatype='real' name='[Application (copy 3)]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Reveraling some other information&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Reveraling some other information&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Interview with the director' datatype='real' name='[Application (copy 4)]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Interview with the director&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Interview with the director&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Offer' datatype='real' name='[Application (copy 5)]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Offer&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Offer&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Testing' datatype='real' name='[Application (copy)]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Testing&quot; &#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Testing&quot; &#13;&#10;THEN SUM([Percentage]) END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Percentage Diff' datatype='real' name='[Calculation_2151313269328076806]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Percentage]) - LOOKUP(SUM([Percentage]), -1)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Application' datatype='real' name='[Calculation_2151313269348425735]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ATTR([Stage]) = &quot;Application&quot;&#13;&#10;OR LOOKUP(ATTR([Stage]), -1)=&quot;Application&quot;&#13;&#10;THEN SUM([Percentage]) END'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column datatype='real' name='[Percentage]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Stage]' role='dimension' type='nominal' />
+            <column-instance column='[Stage]' derivation='None' name='[none:Stage:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Percentage]' derivation='Sum' name='[sum:Percentage:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Application (copy 2)]' derivation='User' name='[usr:Application (copy 2):qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Application (copy 3)]' derivation='User' name='[usr:Application (copy 3):qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Application (copy 4)]' derivation='User' name='[usr:Application (copy 4):qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Application (copy 5)]' derivation='User' name='[usr:Application (copy 5):qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Application (copy)]' derivation='User' name='[usr:Application (copy):qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Calculation_2151313269328076806]' derivation='User' name='[usr:Calculation_2151313269328076806:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+            <column-instance column='[Calculation_2151313269348425735]' derivation='User' name='[usr:Calculation_2151313269348425735:qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1pdqggm102b50s1fkskjm1w507al].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Calculation_2151313269348425735:qk:2]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Application (copy 2):qk:2]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Application (copy 4):qk:2]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Application (copy 5):qk:2]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Application (copy 3):qk:2]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Application (copy):qk:2]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Application&quot;</bucket>
+              <bucket>&quot;Brief Interview by HR&quot;</bucket>
+              <bucket>&quot;Testing&quot;</bucket>
+              <bucket>&quot;Reveraling some other information&quot;</bucket>
+              <bucket>&quot;Interview with the director&quot;</bucket>
+              <bucket>&quot;Offer&quot;</bucket>
+              <bucket>%all%</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.1pdqggm102b50s1fkskjm1w507al].[:Measure Names]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1pdqggm102b50s1fkskjm1w507al].[Multiple Values]' field-type='quantitative' max='1.2' min='0.0' range-type='fixed' reverse='true' scope='cols' type='space' />
+            <format attr='display' class='0' field='[federated.1pdqggm102b50s1fkskjm1w507al].[Multiple Values]' scope='cols' value='false' />
+            <format attr='display' class='1' field='[federated.1pdqggm102b50s1fkskjm1w507al].[Multiple Values]' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Calculation_2151313269328076806:qk]' value='p0%' />
+            <format attr='text-format' field='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' value='p0%' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' value='false' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='show-null-value-warning' value='false' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' />
+              <lod column='[federated.1pdqggm102b50s1fkskjm1w507al].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1pdqggm102b50s1fkskjm1w507al].[Multiple Values]'>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' />
+              <text column='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' />
+              <text column='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' />
+              <text column='[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Calculation_2151313269328076806:qk]' />
+              <lod column='[federated.1pdqggm102b50s1fkskjm1w507al].[:Measure Names]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run bold='true' fontsize='11'>&lt;[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]&gt;</run>
+                <run>Æ&#10;</run>
+                <run bold='true'>&lt;[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]&gt;, </run>
+                <run bold='true' fontcolor='#d52519'>&lt;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Calculation_2151313269328076806:qk]&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='left' />
+                <format attr='vertical-align' value='center' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1pdqggm102b50s1fkskjm1w507al].[Multiple Values]' x-index='1'>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' />
+              <lod column='[federated.1pdqggm102b50s1fkskjm1w507al].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]</rows>
+        <cols>([federated.1pdqggm102b50s1fkskjm1w507al].[Multiple Values] + [federated.1pdqggm102b50s1fkskjm1w507al].[Multiple Values])</cols>
+      </table>
+      <simple-id uuid='{50F53FF4-4234-454C-8BF6-B997161DE5F5}' />
+    </worksheet>
+    <worksheet name='smooth funnel chart'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>The Pass Rates of Interviewing</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='funnel_dataset_interview' name='federated.1pdqggm102b50s1fkskjm1w507al' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1pdqggm102b50s1fkskjm1w507al'>
+            <column caption='Percentage Diff' datatype='real' name='[Calculation_2151313269328076806]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Percentage]) - LOOKUP(SUM([Percentage]), -1)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column datatype='real' name='[Percentage]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Stage]' role='dimension' type='nominal' />
+            <column-instance column='[Stage]' derivation='None' name='[none:Stage:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Percentage]' derivation='Sum' name='[sum:Percentage:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_2151313269328076806]' derivation='User' name='[usr:Calculation_2151313269328076806:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' />
+            </column-instance>
+          </datasource-dependencies>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' shelf='rows' />
+          </shelf-sorts>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' field-type='quantitative' max='1.1499999999999999' min='0.0' range-type='fixed' reverse='true' scope='cols' type='space' />
+            <format attr='display' class='0' field='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' scope='cols' value='false' />
+            <format attr='display' class='1' field='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Calculation_2151313269328076806:qk]' value='p0%' />
+            <format attr='text-format' field='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' value='p0%' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' value='false' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <text column='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' />
+              <text column='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' />
+              <text column='[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Calculation_2151313269328076806:qk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run bold='true' fontsize='11'>&lt;[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]&gt;</run>
+                <run>Æ&#10;</run>
+                <run bold='true' fontcolor='#4e79a7'>&lt;[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]&gt;,</run>
+                <run bold='true'>Æ </run>
+                <run bold='true' fontcolor='#d52519'>&lt;[federated.1pdqggm102b50s1fkskjm1w507al].[usr:Calculation_2151313269328076806:qk]&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='left' />
+                <format attr='vertical-align' value='center' />
+                <format attr='wrap' value='auto' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk]' x-index='1'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='255' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]</rows>
+        <cols>([federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk] + [federated.1pdqggm102b50s1fkskjm1w507al].[sum:Percentage:qk])</cols>
+      </table>
+      <simple-id uuid='{6CF2ECE4-0B8A-4443-ADB5-0B9A01F1727A}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='51'>
+    <window class='worksheet' name='basic funnel chart'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='150'>
+            <card mode='radiolist' param='[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Pivot Field Names:nk]' type='filter' />
+            <card pane-specification-id='0' param='[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Stage:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Pivot Field Names:nk]</field>
+            <field>[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Stage:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{7CDA7B19-3516-4F64-960A-AA07BFB2B69F}' />
+    </window>
+    <window class='worksheet' name='smooth funnel chart'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.10ucgmf0ufewct14s4ull13r5dq3].[none:Stage:nk]</field>
+            <field>[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{19FC0251-8D9C-4D77-901F-E27A35C4E6A5}' />
+    </window>
+    <window class='worksheet' maximized='true' name='color smooth funnel chart'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='1' param='[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <highlight>
+          <color-one-way>
+            <field>[federated.1pdqggm102b50s1fkskjm1w507al].[none:Stage:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{A9640438-AA0E-474F-AB55-944B067DB5DA}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='basic funnel chart' width='192'>
+      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
+      RU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='color smooth funnel chart' width='192'>
+      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
+      c+2jM3+mbwAAAABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='192' name='smooth funnel chart' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
